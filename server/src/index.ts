@@ -1,12 +1,14 @@
 import express from "express";
-
 import { getId } from "./shorten";
+import Database from "./db";
+
+const db = new Database();
 
 const app = express();
-const port = 8080;
+const port = 8081;
 
 app.get("/", (_, res) => {
-    res.send(getId());
+    db.add(getId(), new Date().toLocaleTimeString());
 });
 
 app.listen(port, () => {
