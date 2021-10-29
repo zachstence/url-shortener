@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 
 import { getId } from "./shorten";
 import Database from "./db";
+import { url } from "inspector";
 
 const db = new Database();
 
@@ -21,8 +22,12 @@ app.post("/add", (req, res) => {
 app.get("/:id", (req, res) => {
     const {id} = req.params;
 
-    const url = db.get(id);
-    res.redirect(url.url);
+    try {
+        const url = db.get(id);
+        res.redirect(url.url);
+    } catch (e) {
+        res.sendStatus(404);
+    }
 });
 
 app.listen(port, () => {
