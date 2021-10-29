@@ -1,4 +1,3 @@
-import {describe, it, expect} from "@jest/globals";
 import {getId} from "../src/shorten";
 
 describe("shorten", () => {
