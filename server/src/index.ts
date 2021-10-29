@@ -18,6 +18,13 @@ app.post("/add", (req, res) => {
     res.send(url);
 });
 
+app.get("/:id", (req, res) => {
+    const {id} = req.params;
+
+    const url = db.get(id);
+    res.redirect(url.url);
+});
+
 app.listen(port, () => {
     console.log(`Server listening on at http://localhost:${port}`);
 });
