@@ -1,4 +1,4 @@
-import Database from "../src/db";
+import Database from "../src/Database";
 import {mocked} from "ts-jest/utils";
 import { JsonDB } from "node-json-db";
 import { Config } from 'node-json-db/dist/lib/JsonDBConfig';

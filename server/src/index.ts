@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 
-import Database from "./db";
+import Database from "./Database";
 
 const db = new Database();
 
