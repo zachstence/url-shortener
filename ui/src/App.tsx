@@ -9,12 +9,18 @@ import Shorten from "./components/Shorten/Shorten";
 
 const App: React.FC = () => {
     return (
-        <BrowserRouter>
-            <Switch>
-                <Route exact path="/" component={Shorten} />
-                <Route exact path="/:id" component={Redirect} />
-            </Switch>
-        </BrowserRouter>
+        <main className="app">
+            <header>URL Shortener</header>
+            <main>
+                <BrowserRouter>
+                    <Switch>
+                        <Route exact path="/" component={Shorten} />
+                        <Route exact path="/:id" component={Redirect} />
+                    </Switch>
+                </BrowserRouter>
+            </main>
+            <footer>GitHub Link</footer>
+        </main>
     )
 };
 
