@@ -33,9 +33,9 @@ app.get("/:id", (req, res) => {
 
     try {
         const url = db.get(id);
-        res.redirect(url.url);
+        res.send(url.url);
     } catch (e) {
-        res.sendStatus(404);
+        res.status(404);
         res.send("ID not found");
     }
 });

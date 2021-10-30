@@ -1,26 +1,21 @@
-import React, { useState } from 'react';
-import axios from "axios";
+import React from "react";
+import {
+    BrowserRouter,
+    Switch,
+    Route,
+  } from "react-router-dom";  
+import Redirect from "./Redirect";
+import Shorten from "./Shorten";
 
-function App(): JSX.Element {
-    const [url, setUrl] = useState<string>("");
-    
-    const onClick = () => {
-        console.log(url);
-
-        axios.post("http://localhost:8081/add", url, {
-            headers: {
-                "Content-Type": "text/plain"
-            }
-        });
-    }
-
+const App: React.FC = () => {
     return (
-        <div className="app">
-            <input type="text" value={url} onChange={e => setUrl(e.target.value)} />
-            <button type="button" onClick={onClick}>Shorten!</button>
-        </div>
-    );
-}
+        <BrowserRouter>
+            <Switch>
+                <Route exact path="/" component={Shorten} />
+                <Route exact path="/:id" component={Redirect} />
+            </Switch>
+        </BrowserRouter>
+    )
+};
 
 export default App;
-    
