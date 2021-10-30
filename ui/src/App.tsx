@@ -4,8 +4,8 @@ import {
     Switch,
     Route,
   } from "react-router-dom";  
-import Redirect from "./Redirect";
-import Shorten from "./Shorten";
+import Redirect from "./components/Redirect/Redirect";
+import Shorten from "./components/Shorten/Shorten";
 
 const App: React.FC = () => {
     return (
