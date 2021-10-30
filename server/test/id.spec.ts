@@ -23,7 +23,7 @@ describe("id", () => {
             expect(id3).not.toEqual(id4);
         });
 
-        it("should not return an id including only alphanumeric characters", () => {
+        it("should return an id including only alphanumeric characters", () => {
             const NUM_CHECKS = 10;
             for (let i = 0; i < NUM_CHECKS; i++) {
                 const id = getId();
@@ -31,7 +31,6 @@ describe("id", () => {
                     expect(id.charAt(c)).toEqual(expect.stringMatching(/[A-Za-z0-9]/));
                 }
             }
-            
         });
 
     });
