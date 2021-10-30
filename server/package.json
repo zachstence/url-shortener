@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.ts",
-    "test": "jest --coverage",
+    "dev": "DB_FILENAME=db.json nodemon src/index.ts",
+    "test": "DB_FILENAME=test.json jest --coverage",
     "test:watch": "npm run test -- --watchAll"
   },
   "keywords": [],

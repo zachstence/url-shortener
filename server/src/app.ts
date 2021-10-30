@@ -1,16 +1,16 @@
 import express from "express";
-import bodyParser from "body-parser";
 import cors from "cors";
 
 import Database from "./Database";
 
-const db = new Database();
+const filename = process.env.DB_FILENAME;
+if (!filename) throw new Error();
+
+const db = new Database(filename);
 
 const app = express();
 app.use(express.text());
-app.use(cors({
-    origin: "http://localhost:8080"
-}));
+app.use(cors({origin: "http://localhost:8080"}));
 
 const URL_REGEX = new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi);
 

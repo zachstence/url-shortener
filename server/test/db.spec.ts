@@ -11,6 +11,7 @@ jest.mock("../src/id");
 describe("db", () => {
     let db: Database;
     const SEP = "/";
+    const filename = "filename";
 
     const id = "id";
     const inputUrl = "inputUrl";
@@ -24,7 +25,7 @@ describe("db", () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
-        db = new Database();
+        db = new Database(filename);
 
         getIdMock.mockReturnValue(id);
 
@@ -33,7 +34,7 @@ describe("db", () => {
 
     it("should create a new database in 'db.json' with proper config", () => {
         expect(ConfigConstructorMock).toHaveBeenCalledTimes(1);
-        expect(ConfigConstructorMock).toHaveBeenCalledWith("db.json", true, true, SEP);
+        expect(ConfigConstructorMock).toHaveBeenCalledWith(filename, true, true, SEP);
         expect(JsonDBConstructorMock).toHaveBeenCalledTimes(1);
     });
 

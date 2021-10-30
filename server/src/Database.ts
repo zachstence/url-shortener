@@ -10,7 +10,11 @@ export interface Entry {
 const SEP = "/";
 
 class Database {
-    db = new JsonDB(new Config("db.json", true, true, SEP));
+    db: JsonDB;
+
+    constructor(filename: string) {
+        this.db = new JsonDB(new Config(filename, true, true, SEP));
+    }
 
     add(url: string): Entry {
         // Generate ID that doesn't already exist in DB
