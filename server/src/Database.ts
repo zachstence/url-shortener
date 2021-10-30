@@ -2,7 +2,7 @@ import { JsonDB } from "node-json-db";
 import { Config } from 'node-json-db/dist/lib/JsonDBConfig'
 import { getId } from "./id";
 
-interface Url {
+export interface Entry {
     id: string;
     url: string;
 }
@@ -12,7 +12,7 @@ const SEP = "/";
 class Database {
     db = new JsonDB(new Config("db.json", true, true, SEP));
 
-    add(url: string): Url {
+    add(url: string): Entry {
         // Generate ID that doesn't already exist in DB
         let id = getId();
         while (this.db.exists(SEP + id)) id = getId();
@@ -26,14 +26,14 @@ class Database {
         };
     }
 
-    get(id: string): Url {
+    get(id: string): Entry {
         return {
             id: id,
             url: this.db.getObject<string>(SEP + id)
         };
     }
 
-    delete(id: string): Url {
+    delete(id: string): Entry {
         const toDelete = this.db.getObject<string>(SEP + id);
         this.db.delete(SEP + id);
         return {

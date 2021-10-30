@@ -17,14 +17,14 @@ const port = 8081;
 const URL_REGEX = new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi);
 
 app.post("/add", (req, res) => {
-    const long = req.body as string;
+    const url = req.body as string;
 
-    if (long.match(URL_REGEX)) {
-        const url = db.add(long);
-        res.send(url);
+    if (url.match(URL_REGEX)) {
+        const entry = db.add(url);
+        res.send(entry.id);
     } else {
         res.status(400);
-        res.send("Invalid URL");
+        res.send("Malformed URL");
     }
 });
 
@@ -32,8 +32,8 @@ app.get("/:id", (req, res) => {
     const {id} = req.params;
 
     try {
-        const url = db.get(id);
-        res.send(url.url);
+        const entry = db.get(id);
+        res.send(entry.url);
     } catch (e) {
         res.status(404);
         res.send("ID not found");
