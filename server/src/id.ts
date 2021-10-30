@@ -1,7 +1,3 @@
-// export const shorten = (url: string): string => {
-
-// };
-
 const CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 const ID_LENGTH = 6;
 

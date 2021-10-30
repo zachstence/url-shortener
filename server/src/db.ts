@@ -1,6 +1,6 @@
 import { JsonDB } from "node-json-db";
 import { Config } from 'node-json-db/dist/lib/JsonDBConfig'
-import { getId } from "./shorten";
+import { getId } from "./id";
 
 interface Url {
     id: string;

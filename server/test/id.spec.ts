@@ -1,6 +1,6 @@
-import {getId} from "../src/shorten";
+import {getId} from "../src/id";
 
-describe("shorten", () => {
+describe("id", () => {
 
     describe("getId", () => {
 
