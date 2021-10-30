@@ -1,5 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 
 import Database from "./db";
 
@@ -7,6 +8,9 @@ const db = new Database();
 
 const app = express();
 app.use(bodyParser.text());
+app.use(cors({
+    origin: "http://localhost:8080"
+}));
 
 const port = 8081;
 
@@ -19,7 +23,8 @@ app.post("/add", (req, res) => {
         const url = db.add(long);
         res.send(url);
     } else {
-        res.sendStatus(400);
+        res.status(400);
+        res.send("Invalid URL");
     }
 });
 
@@ -31,6 +36,7 @@ app.get("/:id", (req, res) => {
         res.redirect(url.url);
     } catch (e) {
         res.sendStatus(404);
+        res.send("ID not found");
     }
 });
 
