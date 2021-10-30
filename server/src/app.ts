@@ -19,10 +19,9 @@ app.post("/add", (req, res) => {
 
     if (url.match(URL_REGEX)) {
         const entry = db.add(url);
-        res.send(entry.id);
+        res.status(200).send(entry.id);
     } else {
-        res.status(400);
-        res.send("Malformed URL");
+        res.status(400).send("Malformed URL");
     }
 });
 
@@ -31,10 +30,9 @@ app.get("/:id", (req, res) => {
 
     try {
         const entry = db.get(id);
-        res.send(entry.url);
+        res.status(200).send(entry.url);
     } catch (e) {
-        res.status(404);
-        res.send("ID not found");
+        res.status(404).send("ID not found");
     }
 });
 
