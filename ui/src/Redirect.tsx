@@ -11,7 +11,7 @@ const Redirect: React.FC = () => {
         (async () => {
             try {
                 const response = await axios.get(`http://localhost:8081/${id}`);
-                window.location.href = response.data;
+                window.location.assign("//" + response.data);
             } catch {
                 setIsError(true);
             }
