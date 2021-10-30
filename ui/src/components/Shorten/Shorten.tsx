@@ -3,19 +3,24 @@ import axios from "axios";
 
 const Shorten: React.FC = () => {
     const [url, setUrl] = useState<string>("");
+    const [short, setShort] = useState<string>("");
     
     const onClick = () => {
-        axios.post("http://localhost:8081/add", url, {
-            headers: {
-                "Content-Type": "text/plain"
-            }
-        });
+        (async () => {
+            const response = await axios.post("http://localhost:8081/add", url, {
+                headers: {
+                    "Content-Type": "text/plain"
+                }
+            });
+            setShort(`${window.location.href}${response.data}`);
+        })();
     }
 
     return (
         <div className="shorten">
             <input type="text" value={url} onChange={e => setUrl(e.target.value)} />
             <button type="button" onClick={onClick}>Shorten!</button>
+            <a href={short} className="short">{short}</a>
         </div>
     );
 }
