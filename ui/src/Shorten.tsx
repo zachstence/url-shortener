@@ -5,8 +5,6 @@ const Shorten: React.FC = () => {
     const [url, setUrl] = useState<string>("");
     
     const onClick = () => {
-        console.log(url);
-
         axios.post("http://localhost:8081/add", url, {
             headers: {
                 "Content-Type": "text/plain"
