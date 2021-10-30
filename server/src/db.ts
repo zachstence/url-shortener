@@ -7,17 +7,19 @@ interface Url {
     url: string;
 }
 
-class Database {
-    db = new JsonDB(new Config("db.json", true, true, '/'));
+const SEP = "/";
 
-    add(long: string): Url {
+class Database {
+    db = new JsonDB(new Config("db.json", true, true, SEP));
+
+    add(url: string): Url {
         // Generate ID that doesn't already exist in DB
         let id = getId();
-        while (this.db.exists("/" + id)) id = getId();
+        while (this.db.exists(SEP + id)) id = getId();
 
-        this.db.push("/" + id, long);
+        this.db.push(SEP + id, url);
 
-        const added = this.db.getObject<string>("/" + id);
+        const added = this.db.getObject<string>(SEP + id);
         return {
             id: id,
             url: added
@@ -27,21 +29,17 @@ class Database {
     get(id: string): Url {
         return {
             id: id,
-            url: this.db.getObject<string>("/" + id)
+            url: this.db.getObject<string>(SEP + id)
         };
     }
 
     delete(id: string): Url {
-        const toDelete = this.db.getObject<string>("/" + id);
-        if (toDelete) {
-            this.db.delete("/" + id);
-            return {
-                id: id,
-                url: toDelete
-            };
-        } else {
-            throw new Error();
-        }
+        const toDelete = this.db.getObject<string>(SEP + id);
+        this.db.delete(SEP + id);
+        return {
+            id: id,
+            url: toDelete
+        };
     }
 }
 
