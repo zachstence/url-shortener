@@ -7,7 +7,7 @@ import Database from "./Database";
 const db = new Database();
 
 const app = express();
-app.use(bodyParser.text());
+app.use(express.text());
 app.use(cors({
     origin: "http://localhost:8080"
 }));
