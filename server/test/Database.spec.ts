@@ -2,11 +2,11 @@ import Database from "../src/Database";
 import {mocked} from "ts-jest/utils";
 import { JsonDB } from "node-json-db";
 import { Config } from 'node-json-db/dist/lib/JsonDBConfig';
-import {getId} from "../src/util";
+import {getId, toUrl} from "../src/util";
 
 jest.mock("node-json-db");
 jest.mock("node-json-db/dist/lib/JsonDBConfig");
-jest.mock("../src/id");
+jest.mock("../src/util");
 
 describe("db", () => {
     let db: Database;
@@ -15,19 +15,21 @@ describe("db", () => {
 
     const id = "id";
     const inputUrl = "inputUrl";
+    const parsedUrl = new URL("https://test.com/some/url?with=queryparams");
     const outputUrl = "outputUrl";
-    const ConfigMock = Config as jest.MockedClass<typeof Config>;
     const JsonDBMock = JsonDB as jest.MockedClass<typeof JsonDB>;
 
     const JsonDBConstructorMock = mocked(JsonDB, true);
     const ConfigConstructorMock = mocked(Config, true);
     const getIdMock = mocked(getId, true);
+    const toUrlMock = mocked(toUrl, true);
 
     beforeEach(() => {
         jest.clearAllMocks();
         db = new Database(filename);
 
         getIdMock.mockReturnValue(id);
+        toUrlMock.mockReturnValue(parsedUrl);
 
         JsonDBMock.prototype.getObject.mockReturnValue(outputUrl);
     });
@@ -45,12 +47,14 @@ describe("db", () => {
             expect(url).toEqual({id: id, url: outputUrl});
 
             expect(getIdMock).toHaveBeenCalledTimes(1);
+            expect(toUrlMock).toHaveBeenCalledTimes(1);
+            expect(toUrlMock).toHaveBeenCalledWith(inputUrl);
 
             expect(JsonDBMock.prototype.exists).toHaveBeenCalledTimes(1);
             expect(JsonDBMock.prototype.exists).toHaveBeenCalledWith(SEP + id);
             
             expect(JsonDBMock.prototype.push).toHaveBeenCalledTimes(1);
-            expect(JsonDBMock.prototype.push).toHaveBeenCalledWith(SEP + id, inputUrl);
+            expect(JsonDBMock.prototype.push).toHaveBeenCalledWith(SEP + id, parsedUrl.href);
 
             expect(JsonDBMock.prototype.getObject).toHaveBeenCalledTimes(1);
             expect(JsonDBMock.prototype.getObject).toHaveBeenCalledWith(SEP + id);
@@ -84,12 +88,7 @@ describe("db", () => {
                 throw new Error();
             });
 
-            try {
-                db.get(id);
-                fail("db.get should've thrown an error");
-            } catch (error) {
-                expect(error).toBeDefined();
-            }
+            expect(() => db.get(id)).toThrow();
         });
     });
 
@@ -111,12 +110,7 @@ describe("db", () => {
                 throw new Error();
             });
 
-            try {
-                db.delete(id);
-                fail("db.get should've thrown an error");
-            } catch (error) {
-                expect(error).toBeDefined();
-            }
+            expect(() => db.delete(id)).toThrow();
         });
     });
 });

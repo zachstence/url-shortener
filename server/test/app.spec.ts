@@ -36,7 +36,9 @@ describe("app", () => {
             expect(DatabaseMock.prototype.add).toHaveBeenCalledWith(url);
         });
 
-        it("should respond with 400 if url is malformed", async () => {
+        it("should respond with 400 if database add fails", async () => {
+            DatabaseMock.prototype.add.mockImplementationOnce(() => {throw new Error()});
+
             const url = "malformed url";
             const response = await agent
                 .post("/add")
@@ -46,7 +48,8 @@ describe("app", () => {
             expect(response.status).toEqual(400);
             expect(response.text).toEqual("Malformed URL");
 
-            expect(DatabaseMock.prototype.add).not.toHaveBeenCalled();
+            expect(DatabaseMock.prototype.add).toHaveBeenCalledTimes(1);
+            expect(DatabaseMock.prototype.add).toHaveBeenCalledWith(url);
         });
     });
 

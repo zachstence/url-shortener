@@ -1,9 +1,7 @@
-import {getId} from "../src/util";
+import {getId, toUrl} from "../src/util";
 
 describe("id", () => {
-
     describe("getId", () => {
-
         it("should return random 6 character string", () => {
             const id1 = getId();
             const id2 = getId();
@@ -32,7 +30,21 @@ describe("id", () => {
                 }
             }
         });
-
     });
 
+    describe("toUrl", () => {
+        it("should return URL for properly formed string", () => {
+            const url = toUrl("https://www.github.com/zachstence");
+            expect(url.href).toEqual("https://www.github.com/zachstence");
+        });
+
+        it("should append https protocol if no protocol given", () => {
+            const url = toUrl("www.github.com/zachstence");
+            expect(url.href).toEqual("https://www.github.com/zachstence");
+        });
+
+        it("should throw if URL is malformed", () => {
+            expect(() => toUrl("malformed url")).toThrow();
+        });
+    });
 });
