@@ -19,9 +19,10 @@ describe("app", () => {
 
         DatabaseMock.prototype.add.mockReturnValue(entry);
         DatabaseMock.prototype.get.mockReturnValue(entry);
+        DatabaseMock.prototype.delete.mockReturnValue(entry);
     });
 
-    describe("/add", () => {
+    describe("POST /add", () => {
         it("should add body to database and respond with id", async () => {
             const url = "https://www.myurl.com/my/url/route?with=queryparams&number=123";
             const response = await agent
@@ -53,7 +54,7 @@ describe("app", () => {
         });
     });
 
-    describe("/:id", () => {
+    describe("GET /:id", () => {
         it("should respond with url from database", async () => {
             const id = "id";
             const response = await agent.get(`/${id}`);
@@ -78,6 +79,34 @@ describe("app", () => {
 
             expect(DatabaseMock.prototype.get).toHaveBeenCalledTimes(1);
             expect(DatabaseMock.prototype.get).toHaveBeenCalledWith(id);
+        });
+    });
+
+    describe("DELETE /:id", () => {
+        it("should respond with url from database", async () => {
+            const id = "id";
+            const response = await agent.delete(`/${id}`);
+
+            expect(response.status).toEqual(200);
+            expect(response.text).toEqual(entry.url);
+
+            expect(DatabaseMock.prototype.delete).toHaveBeenCalledTimes(1);
+            expect(DatabaseMock.prototype.delete).toHaveBeenCalledWith(id);
+        });
+
+        it("should resopnd with 404 if id not found in database", async () => {
+            DatabaseMock.prototype.delete.mockImplementationOnce(() => {
+                throw new Error();
+            });
+
+            const id = "id";
+            const response = await agent.delete(`/${id}`);
+
+            expect(response.status).toEqual(404);
+            expect(response.text).toEqual("ID not found");
+
+            expect(DatabaseMock.prototype.delete).toHaveBeenCalledTimes(1);
+            expect(DatabaseMock.prototype.delete).toHaveBeenCalledWith(id);
         });
     });
 });

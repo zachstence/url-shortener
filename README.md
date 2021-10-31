@@ -90,7 +90,6 @@ The JSON database holds URLs in an object where 6-digit alphanumeric IDs map to 
 ---------
 
 ## Next Steps
-* Server /delete endpoint
 * Responsive
 * Style Redirect loading
 * Copy button for shortened link

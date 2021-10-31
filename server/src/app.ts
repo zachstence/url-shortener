@@ -41,4 +41,20 @@ app.get("/:id", (req, res) => {
     }
 });
 
+/**
+ * DELETE /:id, 6-digit alphanumeric ID
+ * Deletes the URL from the database associated with the given ID. Responds with the URL.
+ * Responds with 404 if the ID does not exist in the database.
+ */
+ app.delete("/:id", (req, res) => {
+    try {
+        const {id} = req.params;
+        const entry = db.delete(id);
+        res.status(200).send(entry.url);
+    } catch {
+        res.status(404).send("ID not found");
+    }
+});
+
+
 export default app;
