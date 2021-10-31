@@ -1,5 +1,3 @@
-* Add directions blurb
-* Style shortened anchor
 * Style Redirect loading
 * Style Redirect error
 * Figure out best way to redirect any URL
