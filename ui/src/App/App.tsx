@@ -21,7 +21,7 @@ const App: React.FC = () => {
                 </BrowserRouter>
             </main>
             <footer>
-                <a href="https://github.com/zachstence/war">
+                <a href="https://github.com/zachstence/url-shortener">
                     <img src="github.png" alt="GitHub Icon"/>
                 </a>
             </footer>
