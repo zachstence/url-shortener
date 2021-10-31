@@ -1,4 +1,3 @@
-* Unit test UI code
 * Building/running the code (Makefile?)
 * JSDoc
 * README
