@@ -72,11 +72,11 @@ The server uses [Express](https://expressjs.com/) to power a REST service, and [
 ## Architecture
 ### UI
 The functionality of the app is split into two components
-* [`Shorten/`] - Handles user interaction and sending a `POST` request to shorten a URL.
-* [`Redirect/`] - Redirects the user from a shortened URL (`.../######`) to a long URL retrieved from the server based on the 6-digit alphanumeric ID.
+* [`Shorten/`](ui/src/components/Shorten/Shorten.tsx) - Handles user interaction and sending a `POST` request to shorten a URL.
+* [`Redirect/`](ui/src/components/Redirect/Redirect.tsx) - Redirects the user from a shortened URL (`.../######`) to a long URL retrieved from the server based on the 6-digit alphanumeric ID.
 
 ### Server
-The database is managed through Express server endpoints defined in [`app.ts`]. The endpoints service requests by interacting with the [`Database`] class. I chose to abstract [`node-json-db`] behind a `Database` class so that the server could be scaled up with a larger database easily.
+The database is managed through Express server endpoints defined in [`app.ts`](server/src/app.ts). The endpoints service requests by interacting with the [`Database`](server/src/Database.ts) class. I chose to abstract `node-json-db` behind [`Database`](server/src/Database.ts) so that the server could be scaled up with a larger database easily by changing the implementation.
 
 The JSON database holds URLs in an object where 6-digit alphanumeric IDs map to URLs.
 ```json
