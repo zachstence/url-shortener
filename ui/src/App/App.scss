@@ -27,8 +27,8 @@ body {
 
 .app {
     display: grid;
-    grid-template-columns: 3rem auto 3rem;
-    grid-template-rows: 3rem auto 3rem;
+    grid-template-columns: 8rem auto 8rem;
+    grid-template-rows: 8rem auto 8rem;
     grid-template-areas:
         ". . ."
         ". main ."
