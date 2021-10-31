@@ -13,13 +13,14 @@ setup:
 # `make server` will be used after `make setup` in order to start
 # an http server process that listens on any localhost:8081
 server:
-	cd server; npm run dev
+	cd server; npm run dev;
 
 # starts the ui dev server on localhost:8080
 ui:
-	cd ui; npm start
+	cd ui; npm start;
 
 # `make test` will be used after `make setup` in order to run
 # your test suite.
 test:
-	cd server; npm run test; cd ../ui; npm run test; cd ..
+	cd server; npm run test;
+	cd ../ui; npm run test;
