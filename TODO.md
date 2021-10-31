@@ -1,4 +1,3 @@
-* Remove URL SHORTENER header
 * Add label to input
 * Add directions blurb
 * Style shortened anchor

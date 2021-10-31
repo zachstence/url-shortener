@@ -12,9 +12,6 @@ import "./App.scss";
 const App: React.FC = () => {
     return (
         <div className="app">
-            <header>
-                <h1>URL SHORTENER</h1>
-            </header>
             <main>
                 <BrowserRouter>
                     <Switch>
