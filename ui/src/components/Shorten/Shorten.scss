@@ -1,0 +1,18 @@
+@import "../../global";
+
+.shorten {
+    input {
+        outline: none;
+        font-size: unset;
+    }
+    
+    .gradient-border {
+        background: 
+            linear-gradient($dark-gray, $dark-gray) padding-box, /*this is your grey background*/
+            linear-gradient(145deg, $pink 0%, $purple 40%, $blue 100%) border-box;
+        color: white;
+        padding: 0.5rem;
+        border: 2px solid transparent;
+        border-radius: 15px;
+    }
+}
