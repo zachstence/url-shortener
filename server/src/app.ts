@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 
 import Database from "./Database";
-import { toUrl } from "./util";
 
 const filename = process.env.DB_FILENAME;
 if (!filename) throw new Error();
@@ -13,8 +12,11 @@ const app = express();
 app.use(express.text());
 app.use(cors({origin: "http://localhost:8080"}));
 
-const URL_REGEX = new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi);
-
+/**
+ * POST /add, plain text URL in body
+ * Generates and adds an ID to the database associated with the given URL. Responds with the new ID.
+ * Responds with 400 if the URL is malformed.
+ */
 app.post("/add", (req, res) => {
     try {
         const entry = db.add(req.body);
@@ -24,6 +26,11 @@ app.post("/add", (req, res) => {
     }
 });
 
+/**
+ * GET /:id, 6-digit alphanumeric ID
+ * Reads the URL from the database associated with the given ID. Responds with the URL.
+ * Responds with 404 if the ID does not exist in the database.
+ */
 app.get("/:id", (req, res) => {
     try {
         const {id} = req.params;
