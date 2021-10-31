@@ -4,7 +4,7 @@ import cors from "cors";
 import Database from "./Database";
 
 const filename = process.env.DB_FILENAME;
-if (!filename) throw new Error();
+if (!filename) throw new Error("Please provide a filename for the database via the environment variable DB_FILENAME.");
 
 const db = new Database(filename);
 
