@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import axios from "axios";
+import * as api from '../../api';
 
 import "./Shorten.scss";
 
@@ -24,12 +24,8 @@ const Shorten: React.FC = () => {
         setShort("");
 
         try {
-            const response = await axios.post("http://localhost:8081/add", url, {
-                headers: {
-                    "Content-Type": "text/plain"
-                }
-            });
-            setShort(`${window.location.href}${response.data}`);
+            const id = await api.add(url);
+            setShort(`${window.location.href}${id}`);
         } catch {
             setIsError(true);
         }

@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import * as api from "../../api";
 
 import "./Redirect.scss";
 
@@ -16,8 +16,8 @@ const Redirect: React.FC = () => {
 
     const redirect = async (): Promise<void> => {
         try {
-            const response = await axios.get(`http://localhost:8081/${id}`);
-            window.location.assign(response.data);
+            const url = await api.get(id);
+            window.location.assign(url);
         } catch (e) {
             setIsError(true);
         }
