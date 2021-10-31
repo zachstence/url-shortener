@@ -5,3 +5,4 @@
 * README
 * Style Redirect loading
 * Copy button for shortened link
+* Continuous gradient across input and button
