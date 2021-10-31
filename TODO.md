@@ -1,4 +1,3 @@
-* Add label to input
 * Add directions blurb
 * Style shortened anchor
 * Style Redirect loading

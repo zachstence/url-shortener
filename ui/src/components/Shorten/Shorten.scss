@@ -1,9 +1,23 @@
 @import "../../global";
 
 .shorten {
-    input {
-        outline: none;
-        font-size: unset;
+    margin-top: 10rem;
+    .input-group {
+        input {
+            outline: none;
+            font-size: unset;
+        }
+
+        position: relative;
+        label {
+            position: absolute;
+            top: -0.5rem;
+            left: 0.75rem;
+            padding: 0 0.2rem;
+            margin-bottom: 1rem;
+            z-index: 1;
+            background-color: $dark-gray;
+        }
     }
 
     button {
@@ -29,7 +43,7 @@
             linear-gradient($dark-gray, $dark-gray) padding-box, /*this is your grey background*/
             $gradient border-box;
         color: white;
-        padding: 0.5rem;
+        padding: 0.75rem;
         border: 4px solid transparent;
         border-radius: 15px;
     }
