@@ -1,0 +1,26 @@
+@import "../../global";
+
+.redirect {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    .error {
+        text-align: center;
+
+        h1 {
+            margin-top: 0;
+            color: $pink;
+        }
+
+        pre {
+            display: inline-block;
+            text-decoration: underline;
+        }
+
+        .back-to-home {
+            color: $pink;
+        }
+    }
+}
