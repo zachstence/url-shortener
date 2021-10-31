@@ -7,19 +7,29 @@
     height: 100%;
 
     .error {
-        text-align: center;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-areas:
+            "error"
+            "message"
+            "back-to-home";
 
+        text-align: center;
+    
         h1 {
+            grid-area: error;
             margin-top: 0;
             color: $pink;
         }
 
         .message {
+            grid-area: message;
             display: inline-block;
-            text-decoration: underline;
         }
 
         .back-to-home {
+            grid-area: back-to-home;
             color: $pink;
         }
     }

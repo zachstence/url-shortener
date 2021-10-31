@@ -28,6 +28,8 @@
         display: flex;
         flex-direction: row;
         margin: 1rem 0;
+        flex-wrap: wrap;
+        justify-content: center;
 
         .input-group {
             position: relative;
@@ -36,15 +38,18 @@
             input {
                 box-sizing: border-box;
                 width: 100%;
+                min-width: 19.5rem;
+                height: 3rem;
                 
                 outline: none;
                 font-size: unset;
+                margin-bottom: 1rem;
             }
     
             label {
                 position: absolute;
                 top: -0.5rem;
-                left: 0.75rem;
+                left: 0.6rem;
                 padding: 0 0.2rem;
                 margin-bottom: 1rem;
                 z-index: 1;
@@ -53,6 +58,7 @@
         }
     
         button {
+            height: 3rem;
             background: $gradient;
             border-radius: 15px;
             font-size: 0.8rem;

@@ -90,7 +90,7 @@ The JSON database holds URLs in an object where 6-digit alphanumeric IDs map to 
 ---------
 
 ## Next Steps
-* Responsive
+* Autofocus input
 * Style Redirect loading
 * Copy button for shortened link
 * Continuous gradient across input and button
