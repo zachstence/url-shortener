@@ -5,6 +5,9 @@ import Redirect from "../components/Redirect/Redirect";
 
 import "./App.scss";
 
+/**
+ * The root component of the app. Renders either Shorten or Redirect based on the current path.
+ */
 const App: React.FC = () => {
     return (
         <div className="app">

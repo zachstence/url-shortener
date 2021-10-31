@@ -1,4 +1,3 @@
-* JSDoc
 * README
 * Responsive
 * Style Redirect loading

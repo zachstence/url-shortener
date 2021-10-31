@@ -3,6 +3,10 @@ import axios from "axios";
 
 import "./Shorten.scss";
 
+/**
+ * Renders an input and button to enter a URL to shorten. POSTs an entered URL to the server
+ * and shows the shortened URL. Shows an error if the POST fails.
+ */
 const Shorten: React.FC = () => {
     const [url, setUrl] = useState<string>("");
     const [short, setShort] = useState<string>("");
@@ -25,11 +29,7 @@ const Shorten: React.FC = () => {
 
     const renderShortOrError = (): JSX.Element | null => {
         if (isError) {
-            return (
-                <p className="error">
-                    Error: Malformed URL. Please try again.
-                </p>
-            );
+            return <p className="error">Error: Malformed URL. Please try again.</p>;
         } else if (short) {
             return (
                 <p className="short">

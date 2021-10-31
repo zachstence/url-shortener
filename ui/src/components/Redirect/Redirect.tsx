@@ -5,6 +5,10 @@ import { Link } from "react-router-dom";
 
 import "./Redirect.scss";
 
+/**
+ * GETs the server for a URL matching the given /:id and redirects to it. Shows an error if
+ * the GET fails.
+ */
 const Redirect: React.FC = () => {
     const [isError, setIsError] = useState<boolean>(false);
 
