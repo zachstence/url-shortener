@@ -10,15 +10,17 @@ const Redirect: React.FC = () => {
 
     const {id} = useParams<{id: string}>();
 
+    const redirect = async (): Promise<void> => {
+        try {
+            const response = await axios.get(`http://localhost:8081/${id}`);
+            window.location.assign(response.data);
+        } catch (e) {
+            setIsError(true);
+        }
+    }
+
     useEffect(() => {
-        (async () => {
-            try {
-                const response = await axios.get(`http://localhost:8081/${id}`);
-                window.location.assign(response.data);
-            } catch {
-                setIsError(true);
-            }
-        })();
+        redirect();
     }, []);
 
     if (isError) {
