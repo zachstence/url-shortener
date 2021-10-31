@@ -14,6 +14,9 @@ const Shorten: React.FC = () => {
     
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        
+        setIsError(false);
+        setShort("");
 
         try {
             const response = await axios.post("http://localhost:8081/add", url, {
