@@ -1,4 +1,9 @@
 $pink: #ff4c9c;
+$dark-pink: #e6458d;
 $purple: #c050d8;
+$dark-purple: #a947bf;
 $blue: #1463ff;
+$dark-blue: #1259e6;
 $dark-gray: #27292e;
+$gradient: linear-gradient(145deg, $pink 0%, $purple 40%, $blue 100%);
+$dark-gradient: linear-gradient(145deg, $dark-pink 0%, $dark-purple 40%, $dark-blue 100%);

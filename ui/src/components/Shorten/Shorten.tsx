@@ -21,7 +21,7 @@ const Shorten: React.FC = () => {
     return (
         <div className="shorten">
             <input className="gradient-border" type="text" value={url} onChange={e => setUrl(e.target.value)} />
-            <button type="button" onClick={onClick}>Shorten!</button>
+            <button type="button" onClick={onClick}>SHORTEN</button>
             <a href={short} className="short">{short}</a>
         </div>
     );

@@ -5,14 +5,32 @@
         outline: none;
         font-size: unset;
     }
-    
+
+    button {
+        background: $gradient;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        height: 100%;
+        color: inherit;
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        outline: inherit;
+        margin-left: 0.5rem;
+        letter-spacing: 6px;
+
+        &:hover {
+            background: $dark-gradient;
+        }
+    }
+
     .gradient-border {
-        background: 
+        background:
             linear-gradient($dark-gray, $dark-gray) padding-box, /*this is your grey background*/
-            linear-gradient(145deg, $pink 0%, $purple 40%, $blue 100%) border-box;
+            $gradient border-box;
         color: white;
         padding: 0.5rem;
-        border: 2px solid transparent;
+        border: 4px solid transparent;
         border-radius: 15px;
     }
 }
