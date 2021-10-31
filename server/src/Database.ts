@@ -1,6 +1,6 @@
 import { JsonDB } from "node-json-db";
 import { Config } from 'node-json-db/dist/lib/JsonDBConfig'
-import { getId, toUrl } from "./util";
+import { getId, parseUrl } from "./util";
 
 /** Associates an ID to a URL. */
 export interface Entry {
@@ -34,8 +34,8 @@ class Database {
         let id = getId();
         while (this.db.exists(SEP + id)) id = getId();
 
-        const url = toUrl(s);
-        this.db.push(SEP + id, url.href);
+        const url = parseUrl(s);
+        this.db.push(SEP + id, url);
 
         const added = this.db.getObject<string>(SEP + id);
         return {

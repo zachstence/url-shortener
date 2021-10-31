@@ -2,7 +2,7 @@ import Database from "../src/Database";
 import {mocked} from "ts-jest/utils";
 import { JsonDB } from "node-json-db";
 import { Config } from 'node-json-db/dist/lib/JsonDBConfig';
-import {getId, toUrl} from "../src/util";
+import {getId, parseUrl} from "../src/util";
 
 jest.mock("node-json-db");
 jest.mock("node-json-db/dist/lib/JsonDBConfig");
@@ -15,14 +15,14 @@ describe("db", () => {
 
     const id = "id";
     const inputUrl = "inputUrl";
-    const parsedUrl = new URL("https://test.com/some/url?with=queryparams");
+    const parsedUrl = "https://test.com/some/url?with=queryparams";
     const outputUrl = "outputUrl";
     const JsonDBMock = JsonDB as jest.MockedClass<typeof JsonDB>;
 
     const JsonDBConstructorMock = mocked(JsonDB, true);
     const ConfigConstructorMock = mocked(Config, true);
     const getIdMock = mocked(getId, true);
-    const toUrlMock = mocked(toUrl, true);
+    const toUrlMock = mocked(parseUrl, true);
 
     beforeEach(() => {
         jest.clearAllMocks();
@@ -54,7 +54,7 @@ describe("db", () => {
             expect(JsonDBMock.prototype.exists).toHaveBeenCalledWith(SEP + id);
             
             expect(JsonDBMock.prototype.push).toHaveBeenCalledTimes(1);
-            expect(JsonDBMock.prototype.push).toHaveBeenCalledWith(SEP + id, parsedUrl.href);
+            expect(JsonDBMock.prototype.push).toHaveBeenCalledWith(SEP + id, parsedUrl);
 
             expect(JsonDBMock.prototype.getObject).toHaveBeenCalledTimes(1);
             expect(JsonDBMock.prototype.getObject).toHaveBeenCalledWith(SEP + id);

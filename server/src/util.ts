@@ -18,6 +18,7 @@ export const getId = (): string => {
 
 /** A regular expression to check if a given string contains a valid http/https protocol. */
 const PROTOCOL_REGEXP = new RegExp(/^https?:\/\//);
+const URL_REGEXP = new RegExp(/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:/~+#-]*[\w@?^=%&amp;/~+#-])?/)
 
 /**
  * Parses a given string to a URL, appending an https protocol if necessary.
@@ -25,10 +26,15 @@ const PROTOCOL_REGEXP = new RegExp(/^https?:\/\//);
  * @returns The parsed URL.
  * @throws If the URL is malformed.
  */
-export const toUrl = (s: string): URL => {
-    if (s.match(PROTOCOL_REGEXP)) {
-        return new URL(s);
+export const parseUrl = (s: string): string => {
+    let withProtocol = s;
+    if (!s.match(PROTOCOL_REGEXP)) {
+        withProtocol = "https://" + s;
+    }
+
+    if (withProtocol.match(URL_REGEXP)) {
+        return withProtocol;
     } else {
-        return new URL(`https://${s}`);
+        throw new Error("Malformed URL");
     }
 };

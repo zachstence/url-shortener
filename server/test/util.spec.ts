@@ -1,4 +1,4 @@
-import {getId, toUrl} from "../src/util";
+import {getId, parseUrl} from "../src/util";
 
 describe("id", () => {
     describe("getId", () => {
@@ -34,17 +34,17 @@ describe("id", () => {
 
     describe("toUrl", () => {
         it("should return URL for properly formed string", () => {
-            const url = toUrl("https://www.github.com/zachstence");
-            expect(url.href).toEqual("https://www.github.com/zachstence");
+            const url = parseUrl("https://www.github.com/zachstence");
+            expect(url).toEqual("https://www.github.com/zachstence");
         });
 
         it("should append https protocol if no protocol given", () => {
-            const url = toUrl("www.github.com/zachstence");
-            expect(url.href).toEqual("https://www.github.com/zachstence");
+            const url = parseUrl("www.github.com/zachstence");
+            expect(url).toEqual("https://www.github.com/zachstence");
         });
 
         it("should throw if URL is malformed", () => {
-            expect(() => toUrl("malformed url")).toThrow();
+            expect(() => parseUrl("malformed url")).toThrow();
         });
     });
 });
