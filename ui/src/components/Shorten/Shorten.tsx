@@ -7,17 +7,15 @@ const Shorten: React.FC = () => {
     const [url, setUrl] = useState<string>("");
     const [short, setShort] = useState<string>("");
     
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
-        (async () => {
-            const response = await axios.post("http://localhost:8081/add", url, {
-                headers: {
-                    "Content-Type": "text/plain"
-                }
-            });
-            setShort(`${window.location.href}${response.data}`);
-        })();
+
+        const response = await axios.post("http://localhost:8081/add", url, {
+            headers: {
+                "Content-Type": "text/plain"
+            }
+        });
+        setShort(`${window.location.href}${response.data}`);
     }
 
     return (
