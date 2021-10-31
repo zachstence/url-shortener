@@ -28,7 +28,7 @@ const Redirect: React.FC = () => {
             <div className="redirect">
                 <div className="error">
                     <h1>Error</h1>
-                    <p>The short URL <pre>{window.location.href}</pre> does not exist.</p>
+                    <div className="message">The short URL <pre>{window.location.href}</pre> does not exist.</div>
                     <Link className="back-to-home" to="/">Back To Home</Link>
                 </div>
             </div>
