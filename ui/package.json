@@ -24,7 +24,9 @@
     "test": "react-scripts test --coverage --watchAll=false",
     "test:watch": "react-scripts test --coverage --watchAll",
     "lint": "eslint src/ --fix",
-    "prepare": "husky install"
+    "prepare": "npx husky install",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +52,7 @@
     "@testing-library/dom": "^8.10.1",
     "@types/react-router-dom": "^5.3.2",
     "eslint": "^7.32.0",
+    "gh-pages": "^3.2.3",
     "history": "^5.0.1",
     "husky": "^7.0.4",
     "lint-staged": "^11.2.3",
