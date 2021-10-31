@@ -7,7 +7,9 @@ const Shorten: React.FC = () => {
     const [url, setUrl] = useState<string>("");
     const [short, setShort] = useState<string>("");
     
-    const onClick = () => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        
         (async () => {
             const response = await axios.post("http://localhost:8081/add", url, {
                 headers: {
@@ -21,7 +23,7 @@ const Shorten: React.FC = () => {
     return (
         <div className="shorten">
             <p className="instructions">Enter a link you would like to shorten, then click SHORTEN!</p>
-            <form>
+            <form onSubmit={onSubmit}>
                 <div className="input-group">
                     <label htmlFor="url">URL</label>
                     <input
@@ -33,7 +35,7 @@ const Shorten: React.FC = () => {
                         onChange={e => setUrl(e.target.value)}
                     />
                 </div>
-                <button type="button" onClick={onClick}>SHORTEN</button>
+                <button type="submit">SHORTEN</button>
             </form>
             {short && (
                 <p className="short">
