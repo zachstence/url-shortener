@@ -1,6 +1,6 @@
 import { JsonDB } from "node-json-db";
 import { Config } from 'node-json-db/dist/lib/JsonDBConfig'
-import { getId } from "./id";
+import { getId, toUrl } from "./util";
 
 export interface Entry {
     id: string;
@@ -16,12 +16,13 @@ class Database {
         this.db = new JsonDB(new Config(filename, true, true, SEP));
     }
 
-    add(url: string): Entry {
+    add(s: string): Entry {
         // Generate ID that doesn't already exist in DB
         let id = getId();
         while (this.db.exists(SEP + id)) id = getId();
 
-        this.db.push(SEP + id, url);
+        const url = toUrl(s);
+        this.db.push(SEP + id, url.href);
 
         const added = this.db.getObject<string>(SEP + id);
         return {

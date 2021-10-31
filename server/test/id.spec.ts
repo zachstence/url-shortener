@@ -1,4 +1,4 @@
-import {getId} from "../src/id";
+import {getId} from "../src/util";
 
 describe("id", () => {
 

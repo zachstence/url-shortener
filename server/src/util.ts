@@ -9,3 +9,13 @@ export const getId = (): string => {
     }
     return out;
 }
+
+const PROTOCOL_REGEXP = new RegExp(/^https?:\/\//);
+
+export const toUrl = (s: string): URL => {
+    if (s.match(PROTOCOL_REGEXP)) {
+        return new URL(s);
+    } else {
+        return new URL(`https://${s}`);
+    }
+};

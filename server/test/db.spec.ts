@@ -2,7 +2,7 @@ import Database from "../src/Database";
 import {mocked} from "ts-jest/utils";
 import { JsonDB } from "node-json-db";
 import { Config } from 'node-json-db/dist/lib/JsonDBConfig';
-import {getId} from "../src/id";
+import {getId} from "../src/util";
 
 jest.mock("node-json-db");
 jest.mock("node-json-db/dist/lib/JsonDBConfig");
