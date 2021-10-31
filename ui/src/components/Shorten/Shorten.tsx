@@ -43,7 +43,7 @@ const Shorten: React.FC = () => {
 
     return (
         <div className="shorten">
-            <p className="instructions">Enter a link you would like to shorten, then click SHORTEN!</p>
+            <p className="instructions">Enter a URL you would like to shorten, then click SHORTEN!</p>
             <form onSubmit={onSubmit}>
                 <div className="input-group">
                     <label htmlFor="url">URL</label>
