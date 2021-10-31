@@ -47,6 +47,7 @@
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
+    "@testing-library/dom": "^8.10.1",
     "@types/react-router-dom": "^5.3.2",
     "eslint": "^7.32.0",
     "history": "^5.0.1",
