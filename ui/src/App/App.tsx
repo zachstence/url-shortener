@@ -7,10 +7,14 @@ import {
 import Redirect from "../components/Redirect/Redirect";
 import Shorten from "../components/Shorten/Shorten";
 
+import "./App.scss";
+
 const App: React.FC = () => {
     return (
-        <main className="app">
-            <header>URL Shortener</header>
+        <div className="app">
+            <header>
+                <h1>URL Shortener</h1>
+            </header>
             <main>
                 <BrowserRouter>
                     <Switch>
@@ -19,8 +23,12 @@ const App: React.FC = () => {
                     </Switch>
                 </BrowserRouter>
             </main>
-            <footer>GitHub Link</footer>
-        </main>
+            <footer>
+                <a href="https://github.com/zachstence/war">
+                    <img src="github.png" alt="GitHub Icon"/>
+                </a>
+            </footer>
+        </div>
     )
 };
 
