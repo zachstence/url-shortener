@@ -25,7 +25,7 @@ const Redirect: React.FC = () => {
 
     useEffect(() => {
         redirect();
-    }, []);
+    });
 
     if (isError) {
         return (
