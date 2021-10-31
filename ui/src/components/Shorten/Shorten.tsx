@@ -22,7 +22,14 @@ const Shorten: React.FC = () => {
         <div className="shorten">
             <div className="input-group">
                 <label htmlFor="url">URL</label>
-                <input id="url" className="gradient-border" type="text" value={url} onChange={e => setUrl(e.target.value)} />
+                <input
+                    id="url"
+                    className="gradient-border"
+                    type="text"
+                    value={url}
+                    placeholder="https://www.website.com/with/a/long/url"
+                    onChange={e => setUrl(e.target.value)}
+                />
             </div>
             <button type="button" onClick={onClick}>SHORTEN</button>
             <a href={short} className="short">{short}</a>
