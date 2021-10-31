@@ -7,7 +7,8 @@
 # anything else that needs to happen before your server is started
 # for the first time
 setup:
-	cd server; npm install; cd ../ui; npm install; cd ..
+	cd server; npm install;
+	cd ui; npm install;
 
 # `make server` will be used after `make setup` in order to start
 # an http server process that listens on any localhost:8081
