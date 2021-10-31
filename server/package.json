@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist/ && tsc",
+    "build": "rm -rf dist/ && tsc -p tsconfig.build.json",
     "start": "DB_FILENAME=db.json node dist/index.js",
     "dev": "DB_FILENAME=db.json nodemon src/index.ts",
     "test": "DB_FILENAME=test.json jest --coverage",
