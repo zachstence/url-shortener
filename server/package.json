@@ -8,7 +8,8 @@
     "start": "DB_FILENAME=db.json node dist/index.js",
     "dev": "DB_FILENAME=db.json nodemon src/index.ts",
     "test": "DB_FILENAME=test.json jest --coverage",
-    "test:watch": "npm run test -- --watchAll"
+    "test:watch": "npm run test -- --watchAll",
+    "deploy": "git subtree push --prefix server heroku master"
   },
   "keywords": [],
   "author": "",
