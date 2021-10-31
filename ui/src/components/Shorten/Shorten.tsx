@@ -6,17 +6,40 @@ import "./Shorten.scss";
 const Shorten: React.FC = () => {
     const [url, setUrl] = useState<string>("");
     const [short, setShort] = useState<string>("");
+    const [isError, setIsError] = useState<boolean>(false);
     
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const response = await axios.post("http://localhost:8081/add", url, {
-            headers: {
-                "Content-Type": "text/plain"
-            }
-        });
-        setShort(`${window.location.href}${response.data}`);
+        try {
+            const response = await axios.post("http://localhost:8081/add", url, {
+                headers: {
+                    "Content-Type": "text/plain"
+                }
+            });
+            setShort(`${window.location.href}${response.data}`);
+        } catch {
+            setIsError(true);
+        }
     }
+
+    const renderShortOrError = (): JSX.Element | null => {
+        if (isError) {
+            return (
+                <p className="error">
+                    Error: Malformed URL. Please try again.
+                </p>
+            );
+        } else if (short) {
+            return (
+                <p className="short">
+                    Your shortened URL: <a href={short} className="short">{short}</a>
+                </p>
+            );
+        } else {
+            return null;
+        }
+    };
 
     return (
         <div className="shorten">
@@ -35,11 +58,7 @@ const Shorten: React.FC = () => {
                 </div>
                 <button type="submit">SHORTEN</button>
             </form>
-            {short && (
-                <p className="short">
-                    Your shortened URL: <a href={short} className="short">{short}</a>
-                </p>
-            )}
+            {renderShortOrError()}
         </div>
     );
 }

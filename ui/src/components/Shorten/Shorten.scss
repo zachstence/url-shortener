@@ -80,9 +80,11 @@
         }    
     }
 
-    .short {
-        a {
-            color: $pink;
-        }
+    .short a {
+        color: $pink;
+    }
+
+    .error {
+        color: $pink;
     }
 }
