@@ -79,6 +79,8 @@ The functionality of the app is split into two components
 * [`Shorten/`](ui/src/components/Shorten/Shorten.tsx) - Handles user interaction and sending a `POST` request to shorten a URL.
 * [`Redirect/`](ui/src/components/Redirect/Redirect.tsx) - Redirects the user from a shortened URL (`.../######`) to a long URL retrieved from the server based on the 6-digit alphanumeric ID.
 
+In [`index.tsx`](ui/src/index.tsx), I made the decision to use `HashRouter` so that the app would work when deployed on GitHub pages. This could easily be swapped out for `BrowserRouter` if this app was deployed somewhere else.
+
 ### Server
 The database is managed through Express server endpoints defined in [`app.ts`](server/src/app.ts). The endpoints service requests by interacting with the [`Database`](server/src/Database.ts) class. I chose to abstract `node-json-db` behind [`Database`](server/src/Database.ts) so that the server could be scaled up with a larger database easily by changing the implementation.
 
