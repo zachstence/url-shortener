@@ -1,5 +1,7 @@
 # url-shortener
 
+[![wakatime](https://wakatime.com/badge/user/2a0a4013-ea89-43b7-99d9-1a215b4c34d0/project/b6cbcf08-5f83-451a-96e6-441673068aac.svg)](https://wakatime.com/badge/user/2a0a4013-ea89-43b7-99d9-1a215b4c34d0/project/b6cbcf08-5f83-451a-96e6-441673068aac)
+
 ![URL Shortener Screenshot](https://github.com/zachstence/url-shortener/blob/main/screenshot.png)
 
 ## Table of Contents
