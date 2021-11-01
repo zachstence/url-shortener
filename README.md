@@ -1,5 +1,7 @@
 # url-shortener
 
+![URL Shortener Screenshot](https://github.com/zachstence/url-shortener/blob/main/screenshot.png)
+
 ## Table of Contents
 * [Demo](#demo)
 * [Running Locally](#running-locally)
