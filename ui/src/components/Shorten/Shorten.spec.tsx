@@ -1,12 +1,12 @@
 import {render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
-import {add} from "../../api";
+import {add} from "../../api/api";
 import { mocked } from "ts-jest/utils";
 
 import Shorten from "./Shorten";
 
-jest.mock("../../api");
+jest.mock("../../api/api");
 
 describe("Shorten", () => {
 

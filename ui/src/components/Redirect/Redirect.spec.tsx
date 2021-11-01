@@ -6,14 +6,14 @@ import Redirect from "./Redirect";
 import { useParams } from "react-router";
 import {Router} from "react-router-dom";
 import { createMemoryHistory } from "history";
-import {get} from "../../api";
+import {get} from "../../api/api";
 
 jest.mock("react-router", () => ({
     ...jest.requireActual("react-router"),
     useParams: jest.fn(),
 }));
 
-jest.mock("../../api");
+jest.mock("../../api/api");
 
 describe("Redirect", () => {
 

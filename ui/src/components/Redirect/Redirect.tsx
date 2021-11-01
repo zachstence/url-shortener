@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router"
 import { Link } from "react-router-dom";
-import * as api from "../../api";
+import * as api from "../../api/api";
 
 import "./Redirect.scss";
 
