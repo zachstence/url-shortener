@@ -38,11 +38,6 @@ describe("id", () => {
             expect(url).toEqual("https://www.github.com/zachstence");
         });
 
-        it("should append https protocol if no protocol given", () => {
-            const url = parseUrl("www.github.com/zachstence");
-            expect(url).toEqual("https://www.github.com/zachstence");
-        });
-
         it("should throw if URL is malformed", () => {
             expect(() => parseUrl("malformed url")).toThrow();
         });
