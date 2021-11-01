@@ -18,6 +18,8 @@
 ## Demo
 You can access a live demo of the app deployed on GitHub pages at [zachstence.github.io/url-shortener](https://zachstence.github.io/url-shortener). You are able to shorten any URL you like and then use the shortened URL to be redirected. However, since the server is deployed to Heroku, the database storing the URLs will be wiped every time the Heroku dyno sleeps (after being inactive for 1 hour), or when I deploy new changes. Even so, the deployed app is a great proof-of-concept.
 
+The shortened URLs will look like `zachstence.github.io/url-shortener/#/abc123`. Obviously this is not a very short URL, but the thought behind this project is that it could be deployed behind a much shorter domain name (e.g. bit.ly or goo.gl) and the app would fulfill its purpose.
+
 ## Running Locally
 ### Using `npm` Scripts
 First, clone the repository
