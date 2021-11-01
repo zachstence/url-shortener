@@ -23,4 +23,4 @@ ui:
 # your test suite.
 test:
 	cd server; npm run test;
-	cd ../ui; npm run test;
+	cd ui; npm run test;
