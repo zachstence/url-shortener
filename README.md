@@ -15,6 +15,7 @@
 * [Architecture](#architecture)
     * [UI](#architecture)
     * [Server](#architecture)
+* [Testing](#testing)
 * [Next Steps](#next-steps)
 
 ## Demo
