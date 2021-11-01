@@ -93,6 +93,37 @@ The JSON database holds URLs in an object where 6-digit alphanumeric IDs map to 
 }
 ```
 
+## Testing
+The app almost fully covered with tests.
+
+Server
+| File         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s |
+|--------------|---------|----------|---------|---------|-------------------|
+| All files    |    98.5 |       60 |     100 |     100 |                   |
+|  Database.ts |     100 |      100 |     100 |     100 |                   |
+|  app.ts      |   96.55 |    33.33 |     100 |     100 | 7-14              |
+|  util.ts     |     100 |      100 |     100 |     100 |                   |
+
+UI
+File                     | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------------|---------|----------|---------|---------|-------------------
+All files                |      98 |       75 |     100 |   97.91 |                   
+ src                     |       0 |      100 |     100 |       0 |                   
+  index.tsx              |       0 |      100 |     100 |       0 | 6                 
+ src/App                 |     100 |      100 |     100 |     100 |                   
+  App.tsx                |     100 |      100 |     100 |     100 |                   
+ src/api                 |     100 |       50 |     100 |     100 |                   
+  api.ts                 |     100 |       50 |     100 |     100 | 3                 
+ src/components/Redirect |     100 |      100 |     100 |     100 |                   
+  Redirect.tsx           |     100 |      100 |     100 |     100 |                   
+ src/components/Shorten  |     100 |       75 |     100 |     100 |                   
+  Shorten.tsx            |     100 |       75 |     100 |     100 | 17-33             
+
+* [`app.ts 7-14`](server/src/app.ts#L7) is uncovered because it is config for the server and not business logic. I could have refactored the code to make it testable, but chose not to for this proof-of-concept.
+* [`index.tsx 6`](ui/src/index.tsx#L6) is uncovered because it is config for UI and not business logic. If that code was incorrect, the app would not render.
+* [`api.ts 3`](ui/src/api/api.ts#L3) is uncovered because it is config for API and not business logic. I could have refactored the code to make it testable, but chose not to for this proof-of-concept.
+* [`Shorten.tsx 17-33`](ui/src/components/Shorten/Shorten.tsx) is uncovered by mistake (I think). My tests do exercise typing in the input and clicking the button.
+
 ---------
 
 ## Next Steps
