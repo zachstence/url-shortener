@@ -1,20 +1,19 @@
 import {render, screen, waitFor} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
-import axios from "axios";
 import { mocked } from "ts-jest/utils";
 
 import Redirect from "./Redirect";
 import { useParams } from "react-router";
 import {Router} from "react-router-dom";
 import { createMemoryHistory } from "history";
+import {get} from "../../api";
 
 jest.mock("react-router", () => ({
     ...jest.requireActual("react-router"),
     useParams: jest.fn(),
 }));
 
-jest.mock("axios");
+jest.mock("../../api");
 
 describe("Redirect", () => {
 
@@ -22,13 +21,13 @@ describe("Redirect", () => {
     const href = "href";
 
     const useParamsMock = mocked(useParams, true);
-    const axiosMock = mocked(axios, true);
+    const getMock = mocked(get, true);
 
     Object.defineProperty(window, 'location', {
         writable: true,
         value: {
             href: href,
-            assign: jest.fn() 
+            assign: jest.fn()
         }
     });
     const mockLocation = mocked(window.location, true);
@@ -39,12 +38,12 @@ describe("Redirect", () => {
 
     it("should redirect when GET succeeds", async () => {
         const url = "url";
-        axiosMock.get.mockResolvedValueOnce({data: url});
+        getMock.mockResolvedValueOnce(url);
 
         render(<Redirect />);
 
-        expect(axiosMock.get).toHaveBeenCalledTimes(1);
-        expect(axiosMock.get).toHaveBeenCalledWith(`http://localhost:8081/${id}`);
+        expect(getMock).toHaveBeenCalledTimes(1);
+        expect(getMock).toHaveBeenCalledWith(id);
 
         await waitFor(() => {
             expect(mockLocation.assign).toHaveBeenCalledTimes(1);
@@ -53,7 +52,7 @@ describe("Redirect", () => {
     });
 
     it("should show error when GET fails", async () => {
-        axiosMock.get.mockRejectedValueOnce("ID not found");
+        getMock.mockRejectedValueOnce("ID not found");
 
         render(
             <Router history={createMemoryHistory()}>
@@ -61,19 +60,17 @@ describe("Redirect", () => {
             </Router>
         );
 
-        expect(axiosMock.get).toHaveBeenCalledTimes(1);
-        expect(axiosMock.get).toHaveBeenCalledWith(`http://localhost:8081/${id}`);
-
+        expect(getMock).toHaveBeenCalledTimes(1);
+        expect(getMock).toHaveBeenCalledWith(id);
+        
         await waitFor(() => {
             expect(screen.getByText("Error")).toBeInTheDocument();
             expect(screen.getByText(href)).toBeInTheDocument();
-
+            
             const link = screen.getByText("Back To Home");
             expect(link).toBeInTheDocument();
             expect(link).toHaveAttribute("href", "/");
         });
-
-        expect(mockLocation.assign).not.toHaveBeenCalled();
     });
 
 });

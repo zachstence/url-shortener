@@ -1,16 +1,16 @@
 import {render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
-import axios from "axios";
+import {add} from "../../api";
 import { mocked } from "ts-jest/utils";
 
 import Shorten from "./Shorten";
 
-jest.mock("axios");
+jest.mock("../../api");
 
 describe("Shorten", () => {
 
-    const axiosMock = mocked(axios, true);
+    const addMock = mocked(add);
 
     beforeEach(() => {
         render(<Shorten />);
@@ -34,7 +34,7 @@ describe("Shorten", () => {
     it("should render shortened URL when POST succeeds", async () => {
         const url = "url";
         const id = "id"
-        axiosMock.post.mockResolvedValueOnce({data: id});
+        addMock.mockResolvedValueOnce(id);
 
         const urlInput = screen.getByLabelText("URL");
         userEvent.type(urlInput, url);
@@ -42,12 +42,8 @@ describe("Shorten", () => {
         const shortenButton = screen.getByText("SHORTEN");
         userEvent.click(shortenButton);
 
-        expect(axiosMock.post).toHaveBeenCalledTimes(1);
-        expect(axiosMock.post).toHaveBeenCalledWith("http://localhost:8081/add", url, {
-            headers: {
-                "Content-Type": "text/plain"
-            }
-        });
+        expect(addMock).toHaveBeenCalledTimes(1);
+        expect(addMock).toHaveBeenCalledWith(url);
 
         await waitFor(() => {
             const short = screen.queryByText(`http://localhost/${id}`);
@@ -60,7 +56,7 @@ describe("Shorten", () => {
 
     it("should render error when POST fails", async () => {
         const url = "url";
-        axiosMock.post.mockRejectedValueOnce("Malformed URL");
+        addMock.mockRejectedValueOnce("Malformed URL");
 
         const urlInput = screen.getByLabelText("URL");
         userEvent.type(urlInput, url);
@@ -68,12 +64,8 @@ describe("Shorten", () => {
         const shortenButton = screen.getByText("SHORTEN");
         userEvent.click(shortenButton);
 
-        expect(axiosMock.post).toHaveBeenCalledTimes(1);
-        expect(axiosMock.post).toHaveBeenCalledWith("http://localhost:8081/add", url, {
-            headers: {
-                "Content-Type": "text/plain"
-            }
-        });
+        expect(addMock).toHaveBeenCalledTimes(1);
+        expect(addMock).toHaveBeenCalledWith(url);
 
         await waitFor(() => {
             const error = screen.getByText("Error: Malformed URL. Please try again.")
