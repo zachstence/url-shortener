@@ -14,7 +14,7 @@
 * [Next Steps](#next-steps)
 
 ## Demo
-TODO deploy UI to GitHub pages and server to Heroku
+You can access a live demo of the app deployed on GitHub pages at [zachstence.github.io/url-shortener](https://zachstence.github.io/url-shortener). You are able to shorten any URL you like and then use the shortened URL to be redirected. However, since the server is deployed to Heroku, the database storing the URLs will be wiped every time the Heroku dyno sleeps (after being inactive for 1 hour), or when I deploy new changes. Even so, the deployed app is a great proof-of-concept.
 
 ## Running Locally
 ### Using `npm` Scripts
