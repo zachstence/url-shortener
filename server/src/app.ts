@@ -10,7 +10,9 @@ const db = new Database(filename);
 
 const app = express();
 app.use(express.text());
-app.use(cors({origin: "http://localhost:8080"}));
+
+const origin = process.env.NODE_ENV === "development" ? `http://localhost:8080` : `https://zachstence.github.io/url-shortener`
+app.use(cors({origin}));
 
 /**
  * POST /add, plain text URL in body
