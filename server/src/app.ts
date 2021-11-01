@@ -11,7 +11,7 @@ const db = new Database(filename);
 const app = express();
 app.use(express.text());
 
-const origin = process.env.NODE_ENV === "development" ? `http://localhost:8080` : `https://zachstence.github.io/url-shortener`
+const origin = process.env.NODE_ENV === "development" ? `http://localhost:8080` : `https://zachstence.github.io`
 app.use(cors({origin}));
 
 /**
