@@ -36,7 +36,7 @@ To run the server, first build the code, then start the server.
 ```sh
 $ cd server
 $ npm run build
-$ npm run start
+$ npm run dev
 ```
 
 To run the UI, simply start it using the CRA script.
