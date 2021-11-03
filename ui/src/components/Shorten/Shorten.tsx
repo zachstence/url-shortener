@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import * as api from '../../api/api';
 
 import "./Shorten.scss";
@@ -11,11 +11,6 @@ const Shorten: React.FC = () => {
     const [url, setUrl] = useState<string>("");
     const [short, setShort] = useState<string>("");
     const [isError, setIsError] = useState<boolean>(false);
-    const input = useRef<HTMLInputElement>(null);
-
-    useEffect(() => {
-        if (input.current) input.current.focus();
-    });
     
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -29,8 +24,6 @@ const Shorten: React.FC = () => {
         } catch {
             setIsError(true);
         }
-
-        if (input.current) input.current.focus();
     }
 
     const renderShortOrError = (): JSX.Element | null => {
@@ -54,13 +47,13 @@ const Shorten: React.FC = () => {
                 <div className="input-group">
                     <label htmlFor="url">URL</label>
                     <input
+                        autoFocus
                         id="url"
                         className="gradient-border"
                         type="text"
                         value={url}
                         placeholder="https://www.website.com/with/a/long/url"
                         onChange={e => setUrl(e.target.value)}
-                        ref={input}
                     />
                 </div>
                 <button type="submit">SHORTEN</button>
